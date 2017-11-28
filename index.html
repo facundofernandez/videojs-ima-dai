@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <link rel="stylesheet" href="node_modules/video.js/dist/video-js.css">
+    <link rel="stylesheet" href="videojs-quality-levels.css">
+    <script src="node_modules/video.js/dist/video.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.min.js"></script> -->
+
+    <script src="node_modules/videojs-contrib-ads/dist/videojs.ads.js"></script>
+    <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <script type="text/javascript" src="//imasdk.googleapis.com/js/sdkloader/ima3_dai.js"></script>
+    <script src="node_modules/videojs-ima/src/videojs.ima.js"></script>
+
+
+
+    <script src="node_modules/videojs-contrib-hls/dist/videojs-contrib-hls.min.js"></script>
+    <script src="videojs-contrib-quality-levels.min.js"></script>
+
+    <script src="dai.js"></script>
+
+
+    <link rel="stylesheet" href="css/vjs-skin-default.css">
+    <link rel="stylesheet" href="dai.css" type="text/css">
+
+</head>
+<body onLoad="initPlayer()">
+<div id="video">
+
+    <video id="my_video_1" class="video-js vjs-skin-default" data-setup='{}' autoplay playsinline muted controls></video>
+
+    <div class="adClick"></div>
+</div>
+
+</body>
+
+</html>

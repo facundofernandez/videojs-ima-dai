@@ -1,0 +1,27 @@
+/*
+Styles for ad integrations.
+*/
+
+.vjs-ad-playing.vjs-ad-playing .vjs-progress-control {
+  pointer-events: none;
+}
+
+// Make the progress bar yellow for ads
+.vjs-ad-playing.vjs-ad-playing .vjs-play-progress {
+  background-color: #ffe400;
+}
+
+// Show the videojs loading spinner during ad loading
+.vjs-ad-playing.vjs-ad-loading .vjs-loading-spinner {
+  display: block;
+}
+
+// Hide the captions button during ad playback
+.vjs-ad-playing .vjs-captions-button {
+    display: none;
+}
+
+// Hide the audio track button during ad playback
+.vjs-ad-playing .vjs-audio-button {
+    display: none;
+}

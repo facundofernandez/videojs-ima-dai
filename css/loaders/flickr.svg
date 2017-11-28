@@ -1,0 +1,22 @@
+<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"
+     class="svg-flickr">
+    <style>
+        #svg-flickr-1{animation: 1s translate-flickr-1 ease-out infinite;}
+
+        #svg-flickr-2{animation: 1s translate-flickr-2 ease-out infinite;}
+
+        @keyframes translate-flickr-1{
+            50%{ transform: translate(30px);}
+        }
+
+        @keyframes translate-flickr-2{
+            50%{ transform: translate(-30px); }
+        }
+
+
+
+    </style>
+    <circle id="svg-flickr-1" cy="50" cx="32.6667" fill="#093d90" r="20"></circle>
+    <circle id="svg-flickr-2" cy="50" cx="67.3333" fill="#667395" r="20"></circle>
+
+</svg>

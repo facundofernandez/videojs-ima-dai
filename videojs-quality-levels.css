@@ -1,0 +1,55 @@
+
+.quality-levels {
+    position: relative;
+    height: 100%;
+}
+
+.quality-levels button {
+    height: 100%;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.menu-quality {
+
+    -webkit-transition:all .3s;
+    transition:all .3s;
+    visibility: hidden;
+    opacity: 0;
+    list-style: none;
+    position: absolute;
+    text-align: center;
+    width: 100px;
+    /* por si no es compatible el navegador con la propiedad calc*/
+    right: -30px;
+    right: calc(-50px + 50%);
+    bottom: 70%;
+    border-radius: 3px;
+    text-shadow: 0 0 2px rgba(0, 0, 0, .5);
+    background: rgba(28, 28, 28, 0.9);
+    padding: 0;
+    color: white;
+    overflow: scroll;
+}
+
+.menu-quality:hover,
+.quality-levels button:hover + .menu-quality {
+    bottom: 100%;
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-quality li {
+    overflow: hidden;
+    padding: 5px;
+}
+
+.menu-quality li:hover {
+    overflow: hidden;
+    cursor: pointer;
+    background: #ffffff2b;
+}
+
+.menu-quality li.selected {
+    color: SpringGreen;
+}

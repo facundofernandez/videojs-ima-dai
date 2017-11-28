@@ -1,0 +1,19 @@
+{
+  "name": "videojsDAI",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "video.js": "^6.4.0"
+  },
+  "dependencies": {
+    "videojs-contrib-hls": "^5.12.2",
+    "videojs-ima": "^0.8.0"
+  }
+}

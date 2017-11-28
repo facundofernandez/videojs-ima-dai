@@ -1,0 +1,328 @@
+
+
+/* Skin Default */
+
+.vjs-skin-default {
+    overflow: hidden;
+
+    color: #fff;
+}
+
+.vjs-skin-default * {
+    outline: none;
+}
+
+.vjs-skin-default .vjs-control-bar {
+    font-size: 1.3em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: #fffefe;
+    color: #000557
+}
+
+.vjs-skin-default .vjs-menu-button .vjs-menu-content {
+    background-color: rgba(43, 51, 63, 0.7);
+}
+
+
+
+.vjs-skin-default .vjs-playback-rate {
+    display:none;
+}
+
+
+.vjs-skin-default .vjs-play-progress,
+.vjs-skin-default .vjs-volume-level {
+    background-color: #000557;
+}
+
+.vjs-skin-default:hover .vjs-big-play-button {
+    background-color: #fefeff;
+}
+
+.vjs-skin-default .vjs-big-play-button:hover {
+    background-color: rgba(195, 195, 195, 0.5);
+    color:#000557;
+}
+
+.vjs-skin-default .vjs-big-play-button {
+    color:#000557;
+    background-color: #fefeff;
+    font-size: 50px;
+    line-height: 2em;
+    height: 2em;
+    width: 2em;
+    border: 0em solid #fff;
+    border-radius: 50%;
+
+
+
+
+    left: 50%;
+    top: 50%;
+    -webkit-transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%);
+}
+
+
+
+
+
+
+/* BEGIN - Cambia el estilo de controlBar */
+
+.vjs-skin-default .vjs-progress-control .vjs-progress-holder {
+    margin: 0;
+}
+.vjs-skin-default .vjs-play-progress:before{
+    content:"";
+}
+
+.vjs-skin-default .vjs-progress-control {
+    position: absolute;
+    -webkit-transform: translate(0,-100%);
+    transform: translate(0,-100%);
+    width:100%;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+}
+
+.vjs-skin-default .vjs-spacer,.video-js .vjs-time-control {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+}
+
+.vjs-skin-default .vjs-time-control {
+    padding:0 .5em;
+}
+
+.vjs-skin-default .vjs-spacer {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+
+.vjs-skin-default .vjs-time-divider {
+    padding:0;
+    min-width:0;
+}
+
+.vjs-skin-default .vjs-remaining-time{
+    display:none;
+}
+
+
+.vjs-skin-default.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar{
+    opacity: 1;
+    -webkit-transition: all .2s;
+    transition:all .2s;
+    height: 0;
+}
+
+
+
+
+.vjs-skin-default.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar .vjs-resolution-button-staticlabel{
+    opacity: 0;
+}
+
+/* END - Cambia el estilo de controlBar */
+
+
+
+
+.vjs-skin-default:hover .vjs-has-started .vjs-control-bar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+
+
+div:not(.vjs-seeking):not(.vjs-waiting).video-js.vjs-paused.vjs-skin-default .vjs-big-play-button {
+    display: block;
+}
+
+
+
+
+
+div:not(.vjs-seeking):not(.vjs-waiting).video-js.vjs-paused.vjs-skin-default .vjs-text-track-display {
+    background: rgba(221, 221, 221, 0.64);
+    height: 100%;
+}
+
+
+
+.vjs-skin-default .vjs-menu-social {
+    position: absolute;
+    display: none;
+    top: 0;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    height: 100%;
+    font-size: 3em;
+}
+.vjs-skin-default .vjs-menu-social.show {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.vjs-skin-default .vjs-menu-social span {
+    position: relative;
+    width: 4em;
+    -webkit-transform: translate(50%, 50%);
+    transform: translate(50%, 50%);
+}
+.vjs-skin-default .vjs-menu-social span:before {
+    position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background: gray;
+    height: 2em;
+    width: 2em;
+    border-radius: 25%;
+}
+.vjs-skin-default .vjs-menu-social span:hover:before {
+    color: gray;
+    background: #fff;
+    cursor: pointer;
+    border-color: gray;
+}
+
+.vjs-skin-default .vjs-menu-social span.vjs-icon-facebook:before {
+    background: #3b5998;
+    border: 3px solid #2d4373;
+}
+.vjs-skin-default .vjs-menu-social span.vjs-icon-twitter:before {
+    background: #0084b4;
+    border: 3px solid #005f81;
+}
+
+
+.vjs-skin-default .vjs-button-social {
+
+    transition: all .3s;
+    position: absolute;
+    top: .5em;
+    right: .5em;
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+    color: #000858;
+    font-size: 30px;
+    background: #f9f9fd;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 5px;
+    box-sizing: content-box;
+}
+
+.vjs-skin-default.vjs-user-inactive .vjs-button-social {
+    opacity:0;
+    visibility: hidden;
+}
+
+.vjs-skin-default.vjs-user-active .vjs-button-social {
+    opacity:1;
+    visibility: visible;
+}
+
+.vjs-skin-default .vjs-button-social:not(.open):before {
+    content: "\f10f";
+    width: 1em;
+}
+.vjs-skin-default .vjs-button-social:before {
+    width: 2em;
+    border-radius: 50%;
+    background: none;
+    content: "\f115";
+    font-family: VideoJS;
+    position: absolute;
+}
+.vjs-skin-default .vjs-button-social:hover:before {
+    color: #000858;
+}
+
+.vjs-skin-default.vjs-paused .vjs-button-social{
+    opacity:1; visibility:visible;
+}
+
+
+
+.vjs-skin-default .vjs-menu-social:not(.show) + .vjs-button-social:before{
+    content: "\f10f";
+}
+
+
+/* Live button*/
+.vjs-skin-default.vjs-live .vjs-current-time,
+.vjs-skin-default.vjs-live .vjs-time-divider,
+.vjs-skin-default.vjs-live .vjs-duration{
+    display:none;
+}
+
+.vjs-skin-default .vjs-live-display{
+    padding:0 10px;
+}
+
+
+.vjs-loading-spinner{
+    border-color:red;
+}
+
+.vjs-loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    width:100px;
+    height:100px;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    border: 0;
+    box-sizing: border-box;
+    background-clip: padding-box;
+
+    border-radius: 0;
+}
+
+.vjs-loading-spinner{
+    background-image: url(../css/loaders/balls3.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.vjs-skin-default .vjs-subs-caps-button{
+    display:none;
+}
+
+
+        
