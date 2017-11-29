@@ -82,8 +82,6 @@ function initIma(){
     };
 
     player.ima(options);
-    google.ima.settings.setVpaidMode(google.ima.ImaSdkSettings.VpaidMode.INSECURE);
-
     player.ima.initializeAdDisplayContainer();
     player.ima.requestAds();
 
@@ -107,6 +105,14 @@ function initIma(){
 
 
     });
+/*
+    player.one("click", function (e) {
+        console.log("click ima");
+        player.ima.initializeAdDisplayContainer();
+        player.ima.requestAds();
+        player.play();
+
+    });*/
 }
 
 
@@ -246,7 +252,7 @@ function setQualityLevels() {
 
 function createQualityButton(qualityLevel, parent) {
     var button = document.createElement('li');
-    button.innerHTML = qualityLevel.bitrate + "p";
+    button.innerHTML = _levelLabel(qualityLevel);
     button.id = 'quality-level-' + qualityLevel.id;
     button.onclick = function () {
 
@@ -266,6 +272,13 @@ function createQualityButton(qualityLevel, parent) {
 
     };
     parent.appendChild(button);
+
+    function _levelLabel(level) {
+        if (level.height) return level.height + "p";
+        else if (level.width) return Math.round(level.width * 9 / 16) + "p";
+        else if (level.bitrate) return (level.bitrate / 1000) + "kbps";
+        else return 0;
+    }
 }
 
 function createQualityButtonAuto(parent) {
@@ -369,8 +382,16 @@ function setEventMobile() {
     player.controlBar.volumePanel.muteToggle.show();
     player.controlBar.volumePanel.volumeControl.show();
 
-    player.on('touchend', function (e) {
+    player.one('touchend', function (e) {
 
+        player.ima.initializeAdDisplayContainer();
+        player.ima.requestAds();
+        player.play();
+
+    });
+
+    player.on('touchend', function (e) {
+    
         if (player.paused()) {
             player.play();
         } else {
@@ -378,6 +399,24 @@ function setEventMobile() {
         }
 
     });
+
+    // Remove controls from the player on iPad to stop native controls from stealing
+    // our click
+    var contentPlayer =  document.getElementById('content_video_html5_api');
+    if ((navigator.userAgent.match(/iPad/i) ||
+            navigator.userAgent.match(/Android/i)) &&
+        contentPlayer.hasAttribute('controls')) {
+        contentPlayer.removeAttribute('controls');
+    }
+
+    var startEvent = 'click';
+    if (navigator.userAgent.match(/iPhone/i) ||
+        navigator.userAgent.match(/iPad/i) ||
+        navigator.userAgent.match(/Android/i)) {
+      startEvent = 'touchend';
+    }
+    player.one(startEvent, initIma);
+
 
     function _stopPropagation(e) {
         e.stopPropagation();

@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "video.js": "^6.4.0"
+    "video.js": "^6.5.0"
   },
   "dependencies": {
     "videojs-contrib-hls": "^5.12.2",
