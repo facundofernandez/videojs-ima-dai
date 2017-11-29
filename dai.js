@@ -1,7 +1,4 @@
-// Copyright 2013 Google Inc. All Rights Reserved.
-// You may study, modify, and use this example for any purpose.
-// Note that this example is provided "as is", WITHOUT WARRANTY
-// of any kind either expressed or implied.
+"use strict";
 
 var player;
 
@@ -16,6 +13,7 @@ var TEST_ASSET_KEY = "sN_IYUG8STe1ZzhIIE_ksA";
 // StreamManager which will be used to request ad-enabled streams.
 var streamManager;
 var content;
+
 /**
  * Initializes the video player.
  */
@@ -23,20 +21,23 @@ var content;
 function initPlayer() {
 
     player = videojs('my_video_1');
-
     player.on("ready", playerReady);
 
     let adClick = document.querySelector('.adClick');
-    adClick.addEventListener('click',function (e) {
+    adClick.addEventListener('click', function (e) {
         console.log("click")
-    })
+    });
+
+    appendMetaViewPort();
 
 }
 
 
-function playerReady(){
+function playerReady() {
 
     console.log("videojs Player");
+
+    if (isMobile()) setEventMobile();
 
     initIma();
 
@@ -46,8 +47,6 @@ function playerReady(){
 
     // Create button and quality levels if is not mobile
     if (!isMobile()) setQualityLevels();
-
-    if (isMobile()) setEventMobile();
 
     // Create button socialMedia
     let socialMenu = createSocialElement([
@@ -72,8 +71,22 @@ function playerReady(){
 
 }
 
+function play(callback) {
 
-function initIma(){
+    if(typeof callback == 'undefined') callback = function(){};
+    var playPromise = player.play();
+
+    if (playPromise !== undefined) {
+        playPromise.then(data => {
+            callback()
+        }).catch(error => {
+            console.log(error)
+        });
+    }
+}
+
+
+function initIma() {
 
     var options = {
         id: 'my_video_1',
@@ -84,17 +97,18 @@ function initIma(){
     player.ima(options);
     player.ima.initializeAdDisplayContainer();
     player.ima.requestAds();
-
+    play();
     player.on("adsready", function (e) {
 
         player.ima.addEventListener(google.ima.AdEvent.Type.ALL_ADS_COMPLETED, function (event) {
-            // Inicia video al terminar ads
-            player.play();
 
-            setTimeout(function(){
+            // Inicia video al terminar ads
+            play();
+
+            setTimeout(function () {
                 player.muted(false);
 
-            },500)
+            }, 1000)
         });
 
         player.ima.addEventListener(google.ima.AdEvent.Type.CLICK, function (event) {
@@ -102,17 +116,8 @@ function initIma(){
             console.log(event)
 
         });
-
-
     });
-/*
-    player.one("click", function (e) {
-        console.log("click ima");
-        player.ima.initializeAdDisplayContainer();
-        player.ima.requestAds();
-        player.play();
 
-    });*/
 }
 
 
@@ -132,18 +137,18 @@ function initStreamManager() {
 
 
     // Add metadata listener. Only used in LIVE streams.
-    player.textTracks().on('addtrack', function(e){
+    player.textTracks().on('addtrack', function (e) {
         // find out if the new track is metadata
         var track = e.track;
 
         if (track.kind === 'metadata') {
             // a cuechange event fires when the player crosses over an ID3 tag
-            track.on('cuechange', function() {
+            track.on('cuechange', function () {
                 let elemTrack = track.activeCues[0];
 
-                if( typeof elemTrack !== "undefined" ){
+                if (typeof elemTrack !== "undefined") {
                     //console.log(elemTrack,track);
-                    streamManager.onTimedMetadata( {
+                    streamManager.onTimedMetadata({
                         duration: Infinity,
                         TXXX: elemTrack.value.data,
 
@@ -181,13 +186,13 @@ function onStreamEvent(e) {
         case google.ima.dai.api.StreamEvent.Type.AD_BREAK_STARTED:
             logText("Ad Break Started");
 
-            adClick.style.display="block";
+            adClick.style.display = "block";
 
             break;
         case google.ima.dai.api.StreamEvent.Type.AD_BREAK_ENDED:
             logText("Ad Break Ended");
 
-            adClick.style.display="none";
+            adClick.style.display = "none";
 
             break;
         default:
@@ -208,7 +213,6 @@ function loadStream(data) {
 function logText(text) {
     console.log(text);
 }
-
 
 
 function setQualityLevels() {
@@ -382,16 +386,23 @@ function setEventMobile() {
     player.controlBar.volumePanel.muteToggle.show();
     player.controlBar.volumePanel.volumeControl.show();
 
-    player.one('touchend', function (e) {
+    player.autoplay(true);
+    player.muted(true);
+    player.playsinline(true);
 
-        player.ima.initializeAdDisplayContainer();
-        player.ima.requestAds();
-        player.play();
+    /* Solo en dispositivos mobiles que no se reproduscan automaticamente (Android)*/
+    if(navigator.userAgent.match(/Android/i)){
+        player.one('touchend', function (e) {
 
-    });
+            player.ima.initializeAdDisplayContainer();
+            player.ima.requestAds();
+            player.play();
+
+        });
+    }
 
     player.on('touchend', function (e) {
-    
+
         if (player.paused()) {
             player.play();
         } else {
@@ -402,21 +413,8 @@ function setEventMobile() {
 
     // Remove controls from the player on iPad to stop native controls from stealing
     // our click
-    var contentPlayer =  document.getElementById('content_video_html5_api');
-    if ((navigator.userAgent.match(/iPad/i) ||
-            navigator.userAgent.match(/Android/i)) &&
-        contentPlayer.hasAttribute('controls')) {
-        contentPlayer.removeAttribute('controls');
-    }
-
-    var startEvent = 'click';
-    if (navigator.userAgent.match(/iPhone/i) ||
-        navigator.userAgent.match(/iPad/i) ||
-        navigator.userAgent.match(/Android/i)) {
-      startEvent = 'touchend';
-    }
-    player.one(startEvent, initIma);
-
+    var contentPlayer = document.getElementById('content_video_html5_api');
+    if (contentPlayer.hasAttribute('controls')) contentPlayer.removeAttribute('controls');
 
     function _stopPropagation(e) {
         e.stopPropagation();
@@ -425,5 +423,13 @@ function setEventMobile() {
     function _preventDefault(e) {
         e.preventDefault();
     }
+}
+
+
+function appendMetaViewPort() {
+    var meta = document.createElement("meta");
+    meta.name = "viewport";
+    meta.content = "width=device-width, initial-scale=1.0";
+    document.head.appendChild(meta);
 }
 
