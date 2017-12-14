@@ -1,0 +1,23 @@
+#video, .vjs-skin-default,.adClick{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;right: 0;
+}
+
+.adClick{
+    display:none;
+}
+
+
+#duration{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: red;
+    padding: 20px;
+}
+
+video::-webkit-media-controls-panel-container {
+    display: none !important;
+}

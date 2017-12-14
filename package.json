@@ -10,9 +10,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "video.js": "^6.5.0"
+    "video.js": "^6.4.0"
   },
   "dependencies": {
+    "browser-sync": "^2.18.13",
+    "express": "^4.16.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-sass": "^3.1.0",
     "videojs-contrib-hls": "^5.12.2",
     "videojs-ima": "^0.8.0"
   }
